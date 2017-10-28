@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Chronobreak</title>
+        <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
+        <link rel="font" href="helvetica.ttf">
+    </head>
+    <body>
+        <div id="title-bar" class="container">
+            <div id="title">Chronobreak</div>
+            <div id="title-bar-btns">
+                <button type="button" id="close-btn" class="close" aria-label="Close">&times;</button>
+            </div>
+        </div>
+        <div id="timer" class="container center-block">
+            <div id="timer-state-active">
+                0:00
+            </div>
+            <div id="timer-state-settingProjectName">
+                <form>
+                    <textarea autofocus placeholder="I will control time." id="project"></textarea>
+                </form>
+            </div>
+        </div>
+        <div id="phase" class="container center-block"></div>
+        <div id="nextSteps" class="container center-block"></div>
+        <div class="container center-block">
+            Welcome to Chronobreak, an extra faithful replication of the original Pomodoro technique created by Francesco Cirillo, developed in procrastination by Jordan Peters.
+        </div>
+        <audio id="timer-audio-tick">
+            <source src="audio/tick.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="timer-audio-tock">
+            <source src="audio/tock.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="timer-audio-settingTick">
+            <source src="audio/settingTick.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="timer-audio-timerComplete">
+            <source src="audio/timerComplete.wav" type="audio/wav">
+        </audio>
+        <audio id="timer-audio-timerComplete2">
+            <source src="audio/timerComplete2.wav" type="audio/wav">
+        </audio>
+        <audio loop id="timer-audio-waitingForSetting">
+            <source src="audio/waitingForSetting.wav" type="audio/wav">
+        </audio>
+        <audio loop id="timer-audio-waitingForSetting2">
+            <source src="audio/waitingForSetting2.wav" type="audio/wav">
+        </audio>
+        <audio id="timer-audio-pomodoroComplete">
+            <source src="audio/pomodoroComplete.wav" type="audio/wav">
+        </audio>
+    </body>
+    <footer>
+        <script>
+            require('./renderer.js');
+        </script>
+        <link rel="stylesheet" href="main.css">
+    </footer>
+</html>

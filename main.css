@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+
+body {
+    background-color: #222;
+    overflow: hidden;
+    /* -webkit-app-region: drag; */
+}
+
+@font-face {
+    font-family: "Main";
+    src: url('helvetica.ttf');
+}
+
+#title-bar {
+    background-color: #222;
+    -webkit-app-region: drag;
+    /* height: 32px; */
+    width: 100%;
+}
+
+#title {
+    display: inline-block;
+    width: 70%;
+}
+
+#title-bar-btns {
+    display: inline-block;
+    -webkit-app-region: no-drag;
+    width: 29%;
+    color: #eee;
+}
+
+.container {
+    user-select: none;
+    font-family: "Ubuntu", sans-serif;
+}
+
+#nextSteps {
+    color: #777;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+#timer {
+    color: #eee;
+}
+
+#timer-state-active {
+    -webkit-app-region: no-drag;
+    font-size: 32vw;
+}
+
+#timer-state-settingProjectName {
+    -webkit-app-region: no-drag;
+    font-size: 4vw;
+}
+
+textarea {
+    background-color: #222;
+    color: #eee;
+
+    width: 100%;
+    height: 6vw;
+
+    text-align: center;
+    resize: none;
+    overflow: hidden;
+
+    border-right: 4px #eee;
+    border-top: 4px #eee;
+    border-left: 4px #eee;
+}
+
+textarea::selection {
+    background-color: #777;
+}
+
+.btn-default {
+    background-color: #eee;
+    color: #222;
+}
+
+input, button, textarea, :focus {
+    outline: none;
+}
