@@ -2,23 +2,39 @@ const {app, BrowserWindow, Menu, Tray, ipcMain} = require('electron');
 const path = require('path');
 const url = require('url');
 
+var config = {
+    node: {
+        __dirname: false
+    }
+}
+
 var win;
 var tray;
 
 function createWindow() {
+    // app.commandLine.appendSwitch('disable-web-security')
     win = new BrowserWindow({
         width:500,
         height:500,
-        icon:'img/icon.png',
+        icon: path.join(__dirname, 'img/icon.png'),
         frame: false,
         // minHeight: 300,
         // minWidth: 300,
+        backgroundColor: '#222',
         title: "Chronobreak",
-        resizable: false
+        // "web-preferences": {
+        //     "web-security": false
+        // },
+        resizable: false,
+        show: false
     });
     // win.setMenu(null);
 
-    tray = new Tray("img/icon-tray.png");
+    win.once('ready-to-show', () => {
+        win.show()
+    })
+
+    tray = new Tray(path.join(__dirname, "img/icon-tray.png"));
 
     global.shouldTick = true
 
@@ -42,11 +58,13 @@ function createWindow() {
     tray.setToolTip('Click to open the Chronobreak timer.')
     tray.setContextMenu(contextMenu)
 
+
     win.loadURL(url.format({
-        pathname: path.join('index.html'),
+        pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
         slashes: true
     }));
+
 
     win.on("minimize", (event) => {
         event.preventDefault()
