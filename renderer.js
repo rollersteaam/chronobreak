@@ -190,6 +190,9 @@ function beginTimer() {
 
         var shouldTick = remote.getGlobal("shouldTick")
 
+        timerAudio.waitingForSetting.pause()
+        timerAudio.waitingForSetting2.pause()
+
         if (shouldTick) {
             if (timerAudioPolarity)
                 timerAudio.tick.play();

@@ -3,6 +3,8 @@
 body {
     background-color: #222;
     overflow: hidden;
+    color: #555;
+    font-size: 0.85em;
     /* -webkit-app-region: drag; */
 }
 
@@ -78,6 +80,10 @@ textarea {
 
 textarea::selection {
     background-color: #777;
+}
+
+button:focus {
+    outline: none;
 }
 
 .btn-default {
