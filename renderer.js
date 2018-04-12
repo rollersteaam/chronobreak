@@ -73,16 +73,18 @@ timerAudio.waitingForSetting = document.getElementById("timer-audio-waitingForSe
 timerAudio.waitingForSetting2 = document.getElementById("timer-audio-waitingForSetting2")
 timerAudio.pomodoroComplete = document.getElementById("timer-audio-pomodoroComplete")
 
+timerAudio.timerSetChime = document.getElementById("timer-audio-timerSetChime");
+
 var timerAudioPolarity = false;
 var intervalObject;
 
 var dictionary = {}
 dictionary.firstInit = "Please set the time to <b>25 minutes</b> to begin your Pomodoro. You can set the timer in place by clicking and dragging on the clock numbers.";
 dictionary.init25 = "Please set the time to <b>25 minutes</b> to initiate the next primary phase."
-dictionary.during25 = "Be aware that a Pomodoro is <b>indivisible</b>, and if an interruption occurs you <b>must</b> either write it down for later, or discard the Pomodoro (by right-clicking the tray icon)."
+dictionary.during25 = "Be aware that a Pomodoro is <b>indivisible</b>, and if an interruption occurs you <b>must</b> either write it down for later, or discard the Pomodoro (by right-clicking the tray icon). This prevents work time from being replaced by break time erroneously."
 dictionary.init5 = "Please set the time to <b>5 minutes</b> for your break phase."
-dictionary.during5 = "Use this time to review what you have gone over so far, or grab refreshments."
-dictionary.completed = "You've completed a Pomodoro, a 1 hour and 55 minutes of work!<br><br>Well done. You may stop here, or set the <b>long break timer</b> to 30 minutes before creating a new Pomodoro after expiry."
+dictionary.during5 = "Use this time to do something different. Move around? Grab tea? Watch a short video? Anything that is too engrossing may take your motivation from your work however."
+dictionary.completed = "You've completed a Pomodoro, a 1 hour and 40 minutes (100 minutes) of work!<br>Well done. You may stop here, or set the <b>long break timer</b> to 30 minutes before creating a new Pomodoro after expiry."
 
 var nextSteps = document.getElementById("nextSteps")
 nextSteps.innerHTML = dictionary.firstInit
@@ -147,6 +149,17 @@ function onTimerEnd() {
     clearInterval(intervalObject);
     intervalObject = null;
 
+    timer.style.backgroundColor = "inherit";
+    timer.style.outline = "none";
+
+    remote.getCurrentWindow().show();
+    remote.getCurrentWindow().focus();
+
+    setTimeout(() => {
+        remote.getCurrentWindow().show();
+        remote.getCurrentWindow().focus()
+    }, 200);
+
     if (currentPhase == 7)
         timerAudio.pomodoroComplete.play()
     else {
@@ -177,6 +190,11 @@ function beginTimer() {
 
     incrementTimerPhase()
     allowAdjustment = false;
+
+    timerAudio.timerSetChime.play();
+
+    timer.style.backgroundColor = "#223040";
+    timer.style.outline = "thick dotted #223040";
 
     if (project.innerText != "")
         title.innerText = project.innerText;

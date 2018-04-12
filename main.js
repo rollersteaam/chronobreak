@@ -36,18 +36,27 @@ function createWindow() {
 
     tray = new Tray(path.join(__dirname, "img/icon-tray.png"));
 
-    global.shouldTick = true
+    global.shouldTick = false
 
     const contextMenu = Menu.buildFromTemplate([
-        {label: 'Toggle Tick Sound', click: () => {
-            global.shouldTick = !global.shouldTick
-        }},
-        {label: 'Check', click: function() {
-            win.show()
-        }},
         {label: 'Discard Pomodoro', click: function() {
             app.isQuiting = true;
             app.quit()
+        }},
+        {
+            type: 'separator',
+        },
+        {
+            label: 'Version 1.0.2'
+        },
+        {
+            type: 'separator',
+        },
+        {label: 'Toggle Tick-Tock Sound', click: () => {
+            global.shouldTick = !global.shouldTick
+        }},
+        {label: 'Open Pomodoro', click: function() {
+            win.show()
         }}
     ])
 

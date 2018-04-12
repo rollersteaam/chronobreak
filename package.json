@@ -1,6 +1,6 @@
 {
   "name": "chronobreak",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "An extra faithful take on the original Pomodoro technique.",
   "main": "main.js",
   "scripts": {
