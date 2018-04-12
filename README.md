@@ -1,6 +1,7 @@
 # Chronobreak
 Open-source Pomodoro timer made in **Electron** that faithfully replicates the original technique, made in procrastination by Jordan Peters (Rollersteaam).
 
+Credits to [redmusic](https://utopian.io/@redmusic)
 ![Banner](banner.png)
 
 ![the Chronobreak timer](https://github.com/rollersteaam/chronobreak/blob/master/showcase.gif)
