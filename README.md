@@ -1,6 +1,8 @@
 # Chronobreak
 Open-source Pomodoro timer made in **Electron** that faithfully replicates the original technique, made in procrastination by Jordan Peters (Rollersteaam).
 
+![Banner](banner.png)
+
 ![the Chronobreak timer](https://github.com/rollersteaam/chronobreak/blob/master/showcase.gif)
 
 **Drag clock numbers to set in place the set timings,** and hear each click along the way. **By initiating every session with a physical act,** focus and flow is created through the visual and audio cues as your session has an increased sense of purpose. You may also choose to **set target focuses for a block of work** to determine your specific tasks. Timer completion cues and drones, as well as an optional ticking of a timer each play their part in making a pretty 'alive' timer.
