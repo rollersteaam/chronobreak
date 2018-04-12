@@ -5,7 +5,7 @@ Open-source Pomodoro timer made in **Electron** that faithfully replicates the o
 
 **Drag clock numbers to set in place the set timings,** and hear each click along the way. **By initiating every session with a physical act,** focus and flow is created through the visual and audio cues as your session has an increased sense of purpose. You may also choose to **set target focuses for a block of work** to determine your specific tasks. Timer completion cues and drones, as well as an optional ticking of a timer each play their part in making a pretty 'alive' timer.
 
-# Latest: Version 1.0.2
+# Latest: Version 1.1.0
 This version is a major quality-of-life adjustment to Chronobreak as I've used it personally over the last 6 months, as well as reading some feedback online about the app itself.
 
 ## General
