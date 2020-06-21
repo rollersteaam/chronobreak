@@ -22,35 +22,39 @@ var previousSettingGoingUp = true;
 var threshold = 1500
 
 timer.onmousemove = (e) => {
-    if (adjusting) {
-        if (!allowAdjustment)
-            return;
+    if (!adjusting)
+        return;
 
-        if (settingBuffer < 4) {
-            settingBuffer += 1;
-            return;
-        }
+    if (!allowAdjustment)
+        return;
 
-        if (e.pageY < initialMouseY)
-            seconds += 60;
-        else
-            seconds -= 60;
-
-        initialMouseY = e.pageY
-
-        timer.innerHTML = getTimeString();
-
-        if (seconds == threshold)
-            beginTimer();
-
-        if (seconds < 0) {
-            seconds = 0
-            timer.innerHTML = getTimeString();
-        }
-
-        settingBuffer = 0
-        timerAudio.settingTick.play();
+    // Slow down speed of adjustment
+    if (settingBuffer < 4) {
+        settingBuffer += 1;
+        return;
     }
+
+    if (e.pageY < initialMouseY) {
+        seconds += 60;
+    } else {
+        seconds -= 60;
+    }
+
+    initialMouseY = e.pageY
+
+    timer.innerHTML = getTimeString();
+
+    if (seconds == threshold) {
+        beginTimer();
+    }
+
+    if (seconds < 0) {
+        seconds = 0
+        timer.innerHTML = getTimeString();
+    }
+
+    settingBuffer = 0
+    timerAudio.settingTick.play();
 }
 
 function getTimeString() {

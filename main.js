@@ -25,6 +25,9 @@ function createWindow() {
         // "web-preferences": {
         //     "web-security": false
         // },
+        webPreferences: {
+            nodeIntegration: true,
+        },
         resizable: false,
         show: false
     });
@@ -47,7 +50,7 @@ function createWindow() {
             type: 'separator',
         },
         {
-            label: 'Version 1.0.2'
+            label: 'Version 1.1.2'
         },
         {
             type: 'separator',
