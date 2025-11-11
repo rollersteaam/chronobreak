@@ -96,6 +96,15 @@ input, button, textarea, :focus {
     outline: none;
 }
 
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
 td {
-    padding-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+th {
+    width: 50%
 }

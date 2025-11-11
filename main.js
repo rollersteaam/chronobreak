@@ -14,7 +14,7 @@ var tray;
 function createWindow() {
     // app.commandLine.appendSwitch('disable-web-security')
     win = new BrowserWindow({
-        width:500,
+        width:600,
         height:500,
         icon: path.join(__dirname, 'img/icon.png'),
         frame: false,
