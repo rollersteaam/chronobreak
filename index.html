@@ -1,63 +1,164 @@
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Chronobreak</title>
-        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-        <link rel="stylesheet" href="bootstrap.min.css">
-        <link rel="stylesheet" href="main.css">
-        <link rel="font" href="helvetica.ttf">
-    </head>
-    <body>
-        <div id="title-bar" class="container">
-            <div id="title">Chronobreak</div>
-            <div id="title-bar-btns">
-                <button type="button" id="close-btn" class="close" aria-label="Close">&times;</button>
-            </div>
-        </div>
-        <div id="timer" class="container center-block">
-            <div id="timer-state-active">
-                0:00
-            </div>
-            <div id="timer-state-settingProjectName">
-                <form>
-                    <textarea autofocus placeholder="I will control time." id="project"></textarea>
-                </form>
-            </div>
-        </div>
-        <div id="phase" class="container center-block"></div>
-        <div id="nextSteps" class="container center-block"></div>
-        <div class="container center-block">
-            Welcome to Chronobreak <b>Version 1.1.2</b>, the faithful replication of the original Pomodoro technique created by Francesco Cirillo, developed in procrastination by Jordan Peters.
-        </div>
-        <audio id="timer-audio-tick">
-            <source src="audio/tick.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="timer-audio-tock">
-            <source src="audio/tock.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="timer-audio-settingTick">
-            <source src="audio/settingTick.mp3" type="audio/mpeg">
-        </audio>
-        <audio id="timer-audio-timerComplete">
-            <source src="audio/timerComplete.wav" type="audio/wav">
-        </audio>
-        <audio id="timer-audio-timerComplete2">
-            <source src="audio/timerComplete2.wav" type="audio/wav">
-        </audio>
-        <audio loop id="timer-audio-waitingForSetting">
-            <source src="audio/waitingForSetting.wav" type="audio/wav">
-        </audio>
-        <audio loop id="timer-audio-waitingForSetting2">
-            <source src="audio/waitingForSetting2.wav" type="audio/wav">
-        </audio>
-        <audio id="timer-audio-pomodoroComplete">
-            <source src="audio/pomodoroComplete.wav" type="audio/wav">
-        </audio>
-        <audio id="timer-audio-timerSetChime">
-            <source src="audio/timerSetChime.wav" type="audio/flac">
-        </audio>
-    </body>
-    <footer>
-        <script src="./renderer.js"></script>
-    </footer>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chronobreak</title>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline';"
+    />
+    <link rel="stylesheet" href="bootstrap.min.css" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="font" href="helvetica.ttf" />
+  </head>
+  <body>
+    <div id="title-bar" class="container">
+      <div id="title">Chronobreak</div>
+      <div id="title-bar-btns">
+        <button type="button" id="close-btn" class="close" aria-label="Close">
+          &times;
+        </button>
+      </div>
+    </div>
+    <div id="timer" class="container center-block">
+      <div id="timer-state-active">90:00</div>
+      <div id="timer-state-settingProjectName">
+        <form>
+          <textarea
+            autofocus
+            placeholder="I will control time."
+            id="project"
+          ></textarea>
+        </form>
+      </div>
+      <div id="start-stop" class="button">Start</div>
+    </div>
+
+    <div class="container center-block">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Amazing</th>
+            <th scope="col">Not Amazing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Joyful - Emotion is a natural challenge, and building features
+              that work well and look good is naturally joyful. It’s difficult
+              but incredibly empowering.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Meaningful - Emotion, if it works, will help cure depression and
+              anxiety for good by empowering people to act on their work and
+              dreams with the power of music. It’s everything I want the future
+              to be. People inspired to live. Engaged, every day. It could be
+              responsible for billions of economic growth, but above that, it
+              could help millions get out of their trapped lives and enter the
+              limelight, a new world of hope brought by other humans - artists,
+              not AI. If we can even just help one person believe in themselves
+              and feel powerful most days, that's an unbelievable result and
+              beats most anything I could have ever worked on.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Powerful - Launching Emotion as a startup would mean I followed
+              through. It would train my ability in AI, software, and
+              entrepreneurship, making me much better for any future works I
+              will do in my life. It will look great as an achievement. It would
+              be a mark of honour for me. Not an old story of something I’m
+              working on, but something I worked on. And perhaps, something that
+              was successful, among the crowds of companies and projects that
+              are not. I chose, of my own will, to make this happen. To push
+              past all the despair, roughness, and fear, to give birth to
+              something, just because I said fuck it, let’s go. That’s one of
+              the most respectable things anyone can do, no matter how messy the
+              road you take.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Secure - If Emotion works as a business idea, it could bring in
+              millions in revenue a year with relative ease. My future would
+              literally be set for life. And if it doesn’t work, the IP we learn
+              could be brought to Spotify, making a massive jump in salary,
+              especially due to the scale of the work. While it won’t bring
+              immediate financial safety, it has the possibility to remove it as
+              a concern for good. With that will come emotional stability, among
+              all the other things we’re doing to make our lives feel fuller and
+              calmer.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Clear - Doing any hard work that actually achieves the goal we
+              need is valuable. It doesn’t matter if it’s not urgent, it is
+              valuable. Creating and launching this beta is the clear next step.
+              It will bring you one step closer to being a real business and you
+              can present this technology in every chat you have. After you make
+              it, you can cold message Spotify employees to get an audience.
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Praised - The people who are waiting for this, that you’ve
+              iterated it with, will be elated that they can function to a level
+              they didn’t think possible. The potentially 1000s of people you
+              haven’t even met yet will be unbelievably grateful after they find
+              it, because you made something that helps them succeed in life.
+              You took the brave sacrifice to do that. If you want praise, or to
+              be respected or favoured, there’s no real greater calling than
+              building something of your own will and making it work just to
+              help other people, and sacrificing your free time to do it.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div id="phase" class="container center-block" style="display: none"></div>
+    <div
+      id="nextSteps"
+      class="container center-block"
+      style="display: none"
+    ></div>
+    <div class="container center-block" style="display: none">
+      Welcome to Chronobreak <b>Version 1.1.2</b>, the faithful replication of
+      the original Pomodoro technique created by Francesco Cirillo, developed in
+      procrastination by Jordan Peters.
+    </div>
+    <audio id="timer-audio-tick">
+      <source src="audio/tick.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="timer-audio-tock">
+      <source src="audio/tock.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="timer-audio-settingTick">
+      <source src="audio/settingTick.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="timer-audio-timerComplete">
+      <source src="audio/timerComplete.wav" type="audio/wav" />
+    </audio>
+    <audio id="timer-audio-timerComplete2">
+      <source src="audio/timerComplete2.wav" type="audio/wav" />
+    </audio>
+    <audio loop id="timer-audio-waitingForSetting">
+      <source src="audio/waitingForSetting.wav" type="audio/wav" />
+    </audio>
+    <audio loop id="timer-audio-waitingForSetting2">
+      <source src="audio/waitingForSetting2.wav" type="audio/wav" />
+    </audio>
+    <audio id="timer-audio-pomodoroComplete">
+      <source src="audio/pomodoroComplete.wav" type="audio/wav" />
+    </audio>
+    <audio id="timer-audio-timerSetChime">
+      <source src="audio/timerSetChime.wav" type="audio/flac" />
+    </audio>
+  </body>
+  <footer>
+    <script src="./renderer.js"></script>
+  </footer>
 </html>

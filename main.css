@@ -5,6 +5,7 @@ body {
     overflow: hidden;
     color: #555;
     font-size: 0.85em;
+    overflow-y: scroll;
     /* -webkit-app-region: drag; */
 }
 
@@ -93,4 +94,8 @@ button:focus {
 
 input, button, textarea, :focus {
     outline: none;
+}
+
+td {
+    padding-bottom: 1rem;
 }

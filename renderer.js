@@ -4,7 +4,10 @@ var timer = document.getElementById("timer-state-active");
 var allowAdjustment = true;
 var adjusting = false;
 var initialMouseY = 0;
-var seconds = 0;
+// Start at 90 minutes
+var seconds = 90 * 60;
+
+var startStopButton = document.getElementById("start-stop")
 
 timer.onmousedown = (e) => {
     adjusting = true;
@@ -19,7 +22,9 @@ timer.onmouseup = (e) => {
 // Makes setting timer a much smoother experience.
 var settingBuffer = 0
 var previousSettingGoingUp = true;
-var threshold = 1500
+
+// Begin timer when it hits 90 minutes
+var threshold = 90 * 60
 
 timer.onmousemove = (e) => {
     if (!adjusting)
@@ -60,10 +65,10 @@ timer.onmousemove = (e) => {
 function getTimeString() {
     let sMod = "";
 
-    if (seconds % 60 < 10)
+    if (Math.trunc(seconds % 60) < 10)
         sMod = "0"
 
-    return Math.trunc(seconds / 60) + ":" + sMod + seconds % 60;
+    return Math.trunc(seconds / 60) + ":" + sMod + Math.trunc(seconds % 60);
 }
 
 var timerAudio = {}
@@ -126,10 +131,10 @@ function requestTimerInput() {
     if (currentPhase != 7) {
         if (alternatingSet1) {
             timerAudio.waitingForSetting.load()
-            setTimeout(() => {timerAudio.waitingForSetting.play()}, 3000)
+            // setTimeout(() => {timerAudio.waitingForSetting.play()}, 3000)
         } else {
             timerAudio.waitingForSetting2.load()
-            setTimeout(() => {timerAudio.waitingForSetting2.play()}, 10000)
+            // setTimeout(() => {timerAudio.waitingForSetting2.play()}, 10000)
         }
 
         alternatingSet1 = !alternatingSet1
@@ -147,8 +152,10 @@ var title = document.getElementById("title")
 var alternatingSet2 = false
 
 function onTimerEnd() {
-    seconds = 0;
+    // seconds = 0;
     timer.innerHTML = getTimeString();
+
+    startStopButton.innerText = "Start"
 
     clearInterval(intervalObject);
     intervalObject = null;
@@ -164,16 +171,16 @@ function onTimerEnd() {
         remote.getCurrentWindow().focus()
     }, 200);
 
-    if (currentPhase == 7)
-        timerAudio.pomodoroComplete.play()
-    else {
-        if (alternatingSet2)
-            timerAudio.timerComplete.play()
-        else
-            timerAudio.timerComplete2.play()
+    // if (currentPhase == 7)
+    //     timerAudio.pomodoroComplete.play()
+    // else {
+    //     if (alternatingSet2)
+    //         timerAudio.timerComplete.play()
+    //     else
+    //         timerAudio.timerComplete2.play()
 
-        alternatingSet2 = !alternatingSet2
-    }
+    //     alternatingSet2 = !alternatingSet2
+    // }
 
     if (currentPhase >= 8)
         return;
@@ -182,17 +189,23 @@ function onTimerEnd() {
     project.style = project.style + "-webkit-app-region: non-drag;"
 
     allowAdjustment = true
-    requestTimerInput()
+    // requestTimerInput()
 }
 
 function beginTimer() {
     if (intervalObject != null)
         return;
 
+    if (regenerateInterval) {
+        clearInterval(regenerateInterval)
+        regenerateInterval = null
+    }
+
+    startStopButton.innerText = "Stop"
     timerAudio.waitingForSetting.pause()
     timerAudio.waitingForSetting2.pause()
 
-    incrementTimerPhase()
+    // incrementTimerPhase()
     allowAdjustment = false;
 
     timerAudio.timerSetChime.play();
@@ -246,4 +259,46 @@ document.onreadystatechange = function () {
 
 project.onkeyup = () => {
     project.innerText = project.innerText.replace(/[\r\n\v]+/g, '')
+}
+
+var regenerateInterval;
+
+startStopButton.onclick = () => {
+    // Stop timer
+    if (intervalObject) {
+        onTimerEnd()
+
+        var lastDateNow = Date.now()
+        regenerateInterval = setInterval(
+            () => {
+                const currentDateNow = Date.now()
+                const intervalElapsedSeconds = (currentDateNow - lastDateNow) / 1000
+                console.log(intervalElapsedSeconds)
+                lastDateNow = currentDateNow
+                const workMinuteRegeneratedPerRestMinuteRatio = 90 / 20
+                seconds += workMinuteRegeneratedPerRestMinuteRatio * intervalElapsedSeconds
+
+                // 90 / 20 = 4.5
+                // (20 * 60) * 4.5 = 90 * 60
+
+                timer.innerHTML = getTimeString();
+
+                // Stop when threshold is reached
+                if (seconds > threshold) {
+                    seconds = threshold
+                    timer.innerHTML = getTimeString();
+
+                    if (regenerateInterval) {
+                        clearInterval(regenerateInterval)
+                        regenerateInterval = null
+                    }
+                }
+            },
+            // 30 fps
+            1000 / 30
+        )
+    } else {
+        // Start timer
+        beginTimer()
+    }
 }
